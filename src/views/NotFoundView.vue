@@ -1,10 +1,10 @@
 <template>
-  <div class="home-view">主页</div>
+  <div class="not-found-view">404 Not Found!</div>
 </template>
 
 <script>
 export default {
-  name: 'HomeView',
+  name: 'NotFoundView',
 };
 </script>
 

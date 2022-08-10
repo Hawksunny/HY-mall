@@ -1,4 +1,4 @@
-# hello-vue-cli
+# HY-mall
 
 ## Project setup
 ```

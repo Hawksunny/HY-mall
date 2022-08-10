@@ -1,10 +1,10 @@
 <template>
-  <div class="home-view">主页</div>
+  <div class="profile-view">我的</div>
 </template>
 
 <script>
 export default {
-  name: 'HomeView',
+  name: 'ProfileView',
 };
 </script>
 

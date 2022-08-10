@@ -1,10 +1,10 @@
 <template>
-  <div class="home-view">主页</div>
+  <div class="category-view">分类</div>
 </template>
 
 <script>
 export default {
-  name: 'HomeView',
+  name: 'CategoryView',
 };
 </script>
 
