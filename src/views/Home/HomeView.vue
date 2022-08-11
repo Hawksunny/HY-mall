@@ -1,5 +1,7 @@
 <template>
-  <div class="home-view">主页</div>
+  <div class="home-view">
+    <h2>主页</h2>
+  </div>
 </template>
 
 <script>
@@ -8,4 +10,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+</style>
