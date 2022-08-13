@@ -4,8 +4,8 @@
 
 <script>
 export default {
-  name: 'ProfileView',
+  name: "ProfileView",
 };
 </script>
 
-<style></style>
+<style scoped></style>

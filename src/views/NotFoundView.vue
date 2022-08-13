@@ -4,8 +4,8 @@
 
 <script>
 export default {
-  name: 'NotFoundView',
+  name: "NotFoundView",
 };
 </script>
 
-<style></style>
+<style scoped></style>

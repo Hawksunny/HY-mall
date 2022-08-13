@@ -1,4 +1,4 @@
-import * as types from './mutaion-types';
+import * as types from "./mutaion-types";
 
 const mutations = {
   [types.INCREMENT](state, payload) {

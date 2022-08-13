@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'TabBar',
+  name: "TabBar",
 };
 </script>
 
@@ -20,9 +20,8 @@ export default {
   right: 0;
   left: 0;
   height: 49px;
-  padding: 0 0 5px 0;
   /* 颜色相关 */
   background-color: #f0f0f0;
-  box-shadow: 0 -2px 2px rgba(150, 150, 150, .08);
+  box-shadow: 0 -2px 2px rgba(150, 150, 150, 0.08);
 }
 </style>

@@ -78,11 +78,11 @@
 </template>
 
 <script>
-import TabBar from '@/components/TabBar/TabBar.vue';
-import TabBarItem from '@/components/TabBar/TabBarItem.vue';
+import TabBar from "@/components/public/TabBar/TabBar.vue";
+import TabBarItem from "@/components/public/TabBar/TabBarItem.vue";
 
 export default {
-  name: 'MyTabBar',
+  name: "MyTabBar",
   components: {
     TabBar,
     TabBarItem,
@@ -92,8 +92,8 @@ export default {
 
 <style scoped>
 img {
-  width: 33px;
-  height: 33px;
+  width: 30px;
+  height: 30px;
   vertical-align: middle;
 }
 span {

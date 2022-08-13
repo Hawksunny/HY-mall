@@ -4,8 +4,8 @@
 
 <script>
 export default {
-  name: 'CategoryView',
+  name: "CategoryView",
 };
 </script>
 
-<style></style>
+<style scoped></style>
