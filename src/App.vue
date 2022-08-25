@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import MyTabBar from '@/components/private/MyTabBar.vue';
+import MyTabBar from "@/components/content/MyTabBar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     MyTabBar,
   },
@@ -17,5 +17,5 @@ export default {
 </script>
 
 <style>
-@import url(./assets/Style/base.css);
+@import url(assets/style/base.css);
 </style>

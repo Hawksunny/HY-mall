@@ -2,7 +2,7 @@
   <div class="my-tab-bar">
     <tab-bar>
       <!-- 主页 -->
-      <tab-bar-item to="/home" active-color="orange">
+      <tab-bar-item to="/home" :activeColor="activeColor">
         <template #icon>
           <div>
             <img src="@/assets/icon/home.svg" alt="home" />
@@ -20,7 +20,7 @@
         </template>
       </tab-bar-item>
       <!-- 分类 -->
-      <tab-bar-item to="/category" active-color="orange">
+      <tab-bar-item to="/category" :activeColor="activeColor">
         <template #icon>
           <div>
             <img src="@/assets/icon/category.svg" alt="category" />
@@ -38,7 +38,7 @@
         </template>
       </tab-bar-item>
       <!-- 购物车 -->
-      <tab-bar-item to="/cart" active-color="orange">
+      <tab-bar-item to="/cart" :activeColor="activeColor">
         <template #icon>
           <div>
             <img src="@/assets/icon/cart.svg" alt="cart" />
@@ -56,7 +56,7 @@
         </template>
       </tab-bar-item>
       <!-- 我的 -->
-      <tab-bar-item to="/profile" active-color="orange">
+      <tab-bar-item to="/profile" :activeColor="activeColor">
         <template #icon>
           <div>
             <img src="@/assets/icon/profile.svg" alt="profile" />
@@ -78,14 +78,18 @@
 </template>
 
 <script>
-import TabBar from "@/components/public/TabBar/TabBar.vue";
-import TabBarItem from "@/components/public/TabBar/TabBarItem.vue";
+import { TabBar, TabBarItem } from "components/common/TabBar";
 
 export default {
   name: "MyTabBar",
   components: {
     TabBar,
     TabBarItem,
+  },
+  data() {
+    return {
+      activeColor: "#ffb900",
+    };
   },
 };
 </script>
@@ -94,9 +98,5 @@ export default {
 img {
   width: 30px;
   height: 30px;
-  vertical-align: middle;
-}
-span {
-  font-size: 1rem;
 }
 </style>

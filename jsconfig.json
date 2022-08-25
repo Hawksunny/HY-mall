@@ -5,7 +5,10 @@
     "baseUrl": "./",
     "moduleResolution": "node",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "assets/*": ["src/assets/*"],
+      "components/*": ["src/components/*"],
+      "network/*": ["src/network/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "jsx": "preserve"
