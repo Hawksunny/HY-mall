@@ -5,12 +5,12 @@
       <tab-bar-item to="/home" :activeColor="activeColor">
         <template #icon>
           <div>
-            <img src="@/assets/icon/home.svg" alt="home" />
+            <img src="~assets/icon/home.svg" alt="home" />
           </div>
         </template>
         <template #icon_ac>
           <div>
-            <img src="@/assets/icon/home-ac.svg" alt="home-ac" />
+            <img src="~assets/icon/home-ac.svg" alt="home-ac" />
           </div>
         </template>
         <template #text>
@@ -23,12 +23,12 @@
       <tab-bar-item to="/category" :activeColor="activeColor">
         <template #icon>
           <div>
-            <img src="@/assets/icon/category.svg" alt="category" />
+            <img src="~assets/icon/category.svg" alt="category" />
           </div>
         </template>
         <template #icon_ac>
           <div>
-            <img src="@/assets/icon/category-ac.svg" alt="category-ac" />
+            <img src="~assets/icon/category-ac.svg" alt="category-ac" />
           </div>
         </template>
         <template #text>
@@ -41,12 +41,12 @@
       <tab-bar-item to="/cart" :activeColor="activeColor">
         <template #icon>
           <div>
-            <img src="@/assets/icon/cart.svg" alt="cart" />
+            <img src="~assets/icon/cart.svg" alt="cart" />
           </div>
         </template>
         <template #icon_ac>
           <div>
-            <img src="@/assets/icon/cart-ac.svg" alt="cart-ac" />
+            <img src="~assets/icon/cart-ac.svg" alt="cart-ac" />
           </div>
         </template>
         <template #text>
@@ -59,12 +59,12 @@
       <tab-bar-item to="/profile" :activeColor="activeColor">
         <template #icon>
           <div>
-            <img src="@/assets/icon/profile.svg" alt="profile" />
+            <img src="~assets/icon/profile.svg" alt="profile" />
           </div>
         </template>
         <template #icon_ac>
           <div>
-            <img src="@/assets/icon/profile-ac.svg" alt="profile-ac" />
+            <img src="~assets/icon/profile-ac.svg" alt="profile-ac" />
           </div>
         </template>
         <template #text>

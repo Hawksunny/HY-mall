@@ -1,53 +1,116 @@
 <template>
   <div class="home-view">
-    <nav-bar class="nav-bar">
-      <template #center>
-        <span>购物街</span>
-      </template>
-    </nav-bar>
-    <swiper>
-      <swiper-item v-for="item in banners" :key="item.acm">
-        <a :href="item.link">
-          <img :src="item.image" :alt="`${item.title}图片`" />
-        </a>
-      </swiper-item>
-    </swiper>
-    <h2>主页</h2>
+    <home-nav-bar class="home-nav-bar" />
+    <home-swiper :banners="banners" />
+    <recommends-view :recommends="recommends" />
+    <feature-view />
+    <tab-control
+      class="tab-control"
+      :titles="goodsTypes"
+      @tabControlClick="switchGoodsType"
+    />
+    <goods-list :goods="curGoodsList" />
   </div>
 </template>
 
 <script>
-import { getMultiData } from "network/home";
-import { NavBar } from "components/common/NavBar";
-import { Swiper, SwiperItem } from "components/common/Swiper";
+import HomeNavBar from "./childCmps/HomeNavBar.vue";
+import HomeSwiper from "./childCmps/HomeSwiper.vue";
+import RecommendsView from "./childCmps/RecommendsView.vue";
+import FeatureView from "./childCmps/FeatureView.vue";
+
+import TabControl from "components/content/TabControl.vue";
+import { GoodsList } from "components/content/GoodsCard";
+
+import { getMultiData, getGoods } from "network/home";
 
 export default {
   name: "HomeView",
   components: {
-    NavBar,
-    Swiper,
-    SwiperItem,
+    HomeNavBar,
+    HomeSwiper,
+    RecommendsView,
+    FeatureView,
+    TabControl,
+    GoodsList,
   },
   data() {
     return {
       banners: [],
       recommends: [],
+      goods: {
+        pop: { page: 0, list: [] },
+        new: { page: 0, list: [] },
+        sell: { page: 0, list: [] },
+      },
+      goodsTypes: ["流行", "新款", "精选"],
+      curGoodsType: "pop",
     };
   },
+  computed: {
+    curGoodsList() {
+      return this.goods[this.curGoodsType].list;
+    },
+  },
   created() {
-    getMultiData().then((res) => {
-      this.banners = res.data.banner.list;
-      this.recommends = res.data.recommend.list;
-    });
+    // 获取主页界面相关的数据
+    this.getMultiData();
+    // 获取主页初始化商品列表
+    this.getGoods("pop");
+    this.getGoods("new");
+    this.getGoods("sell");
+  },
+  methods: {
+    /**
+     * 事件监听相关的方法
+     */
+    switchGoodsType(index) {
+      switch (index) {
+        case 0:
+          this.curGoodsType = "pop";
+          break;
+        case 1:
+          this.curGoodsType = "new";
+          break;
+        case 2:
+          this.curGoodsType = "sell";
+          break;
+      }
+    },
+    /**
+     * 网络请求相关的方法
+     */
+    getMultiData() {
+      getMultiData().then((res) => {
+        this.banners = res.data.banner.list;
+        this.recommends = res.data.recommend.list;
+      });
+    },
+    getGoods(type) {
+      const page = this.goods[type].page + 1;
+      getGoods(type, page).then((res) => {
+        this.goods[type].list.push(...res.data.list);
+        this.goods[type].page++;
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
-.nav-bar {
-  background-color: var(--color-tint);
-  color: #fff;
-  font-weight: 700;
-  letter-spacing: 0.5rem;
+.home-view {
+  padding-top: 44px;
+}
+.home-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+}
+.tab-control {
+  position: sticky;
+  top: 44px;
+  z-index: 9;
 }
 </style>

@@ -53,6 +53,5 @@ export default {
 <style>
 .tab-bar-item {
   flex: 1;
-  font-weight: 700;
 }
 </style>

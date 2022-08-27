@@ -3,8 +3,9 @@
 /*:root -> 获取根元素html*/
 :root {
   --color-text: #666;
-  --color-high-text: #ff5777;
-  /* --color-tint: #ff8198; */
+  --color-price: #ff5777;
+  --color-highlight-text: #ffa900;
+  --color-tint-pink: #ff8198;
   --color-tint: #ffb900;
   --color-background: #fff;
   --font-size: 14px;
@@ -66,3 +67,19 @@ ul {
 .right {
   float: right;
 } */
+
+/* 单行文本省略 */
+.sl-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 多行文本省略 */
+.ml-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

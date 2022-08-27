@@ -15,10 +15,6 @@ export default {
   /* 定位相关 */
   display: flex;
   text-align: center;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
   height: 49px;
   /* 颜色相关 */
   background-color: #f0f0f0;

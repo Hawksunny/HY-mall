@@ -5,3 +5,13 @@ export function getMultiData() {
     url: "/home/multidata",
   });
 }
+
+export function getGoods(type, page) {
+  return haks({
+    url: "/home/data",
+    params: {
+      type,
+      page,
+    },
+  });
+}
