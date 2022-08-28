@@ -2,7 +2,7 @@
   <div class="tab-control">
     <ul>
       <li
-        v-for="(item, index) in titles"
+        v-for="(item, index) in tabs"
         :key="item"
         :class="{ active: curIndex === index }"
         @click="click(index)"
@@ -17,7 +17,7 @@
 export default {
   name: "TabControl",
   props: {
-    titles: {
+    tabs: {
       type: Array,
       default() {
         return [];

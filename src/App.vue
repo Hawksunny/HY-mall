@@ -21,7 +21,6 @@ export default {
 #app {
   font-size: var(--font-size);
   line-height: var(--line-height);
-  padding-bottom: 55px;
 }
 #my-tab-bar {
   position: fixed;

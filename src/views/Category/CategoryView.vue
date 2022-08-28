@@ -1,10 +1,13 @@
 <template>
-  <div class="category-view">分类</div>
+  <div class="category-view"></div>
 </template>
 
 <script>
 export default {
   name: "CategoryView",
+  data() {
+    return {};
+  },
 };
 </script>
 

@@ -6,7 +6,7 @@
     <feature-view />
     <tab-control
       class="tab-control"
-      :titles="goodsTypes"
+      :tabs="goodsTypes"
       @tabControlClick="switchGoodsType"
     />
     <goods-list :goods="curGoodsList" />
@@ -98,9 +98,6 @@ export default {
 </script>
 
 <style scoped>
-.home-view {
-  padding-top: 44px;
-}
 .home-nav-bar {
   position: fixed;
   top: 0;
