@@ -1,6 +1,6 @@
 <template>
   <div class="card-item">
-    <img :src="imgLink" alt="商品图片" />
+    <img :src="imgLink" alt="商品图片" @load="imageloaded" />
     <div class="info">
       <p class="sl-overflow">{{ description }}</p>
       <span class="price">￥{{ price }}</span>
@@ -27,6 +27,11 @@ export default {
       price: this.goodsItem.price,
       stars: this.goodsItem.cfav,
     };
+  },
+  methods: {
+    imageloaded() {
+      this.$bus.$emit("imageloaded");
+    },
   },
 };
 </script>

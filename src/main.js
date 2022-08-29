@@ -12,6 +12,13 @@ Vue.prototype.$haks = haks;
 import * as types from "@/store/mutaion-types";
 Vue.prototype.$x_types = types;
 
+// 全局注册 Scroll 组件
+import { Scroll } from "components/common/Scroll";
+Vue.component("my-scroll", Scroll);
+
+// 定义事件总线，以实现组件间通信
+Vue.prototype.$bus = new Vue();
+
 /* 创建 Vue 实例 */
 Vue.config.productionTip = false;
 new Vue({

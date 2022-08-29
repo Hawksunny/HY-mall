@@ -2,8 +2,8 @@
   <div class="card-list">
     <card-item
       class="card-item"
-      v-for="item in goods"
-      :key="item.iid"
+      v-for="(item, id) in goods"
+      :key="id + item.iid"
       :goods-item="item"
     />
   </div>
