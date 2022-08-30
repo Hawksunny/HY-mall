@@ -1,13 +1,20 @@
 <template>
   <div class="home-view">
     <home-nav-bar class="home-nav-bar" />
-    <back-top v-show="isShow" @click.native="backTop" />
+    <tab-control
+      class="tab-control"
+      :tabs="goodsTypes"
+      @tabControlClick="tabControlClick"
+      v-show="isTabControlFixed"
+    />
+    <back-top v-show="isBackTopShow" @click.native="backTop" />
     <my-scroll
       class="scroll-wrapper"
       ref="scroll"
       :probe-type="2"
       :pull-up-load="true"
-      @scroll="showBackTop"
+      :mouseWheel="true"
+      @scroll="contentScroll"
       @pullingUp="loadMoreGoods"
     >
       <home-swiper :banners="banners" />
@@ -15,12 +22,13 @@
       <feature-view />
       <tab-control
         class="tab-control"
+        ref="tab-control"
         :tabs="goodsTypes"
-        @tabControlClick="switchGoodsType"
+        @tabControlClick="tabControlClick"
       />
       <goods-list :goods="curGoodsList" />
       <div class="pullup-tips">
-        <div v-if="!isLoading">
+        <div v-if="!isGoodsLoading">
           <span>上拉加载更多</span>
         </div>
         <div v-else>
@@ -66,8 +74,11 @@ export default {
       },
       goodsTypes: ["流行", "新款", "精选"],
       curGoodsType: "pop",
-      isShow: false,
-      isLoading: false,
+      isBackTopShow: false,
+      isGoodsLoading: false,
+      tabControlOffsetTop: 0,
+      isTabControlFixed: false,
+      scrollY: 0,
     };
   },
   computed: {
@@ -76,25 +87,37 @@ export default {
     },
   },
   created() {
-    // 获取主页界面相关的数据
+    // 1. 获取主页界面相关的数据
     this.getMultiData();
-    // 获取主页初始化商品列表
+    // 2. 获取主页初始化商品列表
     this.getGoods("pop");
     this.getGoods("new");
     this.getGoods("sell");
   },
   mounted() {
-    // 每次图片加载完成都让scroll重新计算可滚动内容高度，以确保不出bug
+    // 1. 每次图片加载完成都让scroll重新计算可滚动内容高度，以确保不出bug
     const refresh = debounce(this.$refs.scroll.refresh, 20);
     this.$bus.$on("imageloaded", () => {
       refresh();
     });
+    // 2. 获取DOM渲染完后tabControl对应DOM的offSetTop属性
+    setTimeout(() => {
+      this.tabControlOffsetTop = this.$refs["tab-control"].$el.offsetTop;
+    }, 200);
+  },
+  activated() {
+    // console.log(this.scrollY);
+    this.$refs["scroll"].scrollTo(0, this.scrollY, 0);
+  },
+  deactivated() {
+    this.scrollY = this.$refs["scroll"].getScrollY();
   },
   methods: {
     /**
      * 事件监听相关的方法
      */
-    switchGoodsType(index) {
+    tabControlClick(index) {
+      // 切换GoodsType
       switch (index) {
         case 0:
           this.curGoodsType = "pop";
@@ -107,25 +130,24 @@ export default {
           break;
       }
     },
-    showBackTop(pos) {
-      if (-pos.y > 750) {
-        this.isShow = true;
-      } else {
-        this.isShow = false;
-      }
+    contentScroll(pos) {
+      // 1. 判断何时显示回到顶部小图标
+      this.isBackTopShow = -pos.y > 750;
+      // 2. 判断何时固定tabControl
+      this.isTabControlFixed = -pos.y > this.tabControlOffsetTop;
     },
     backTop() {
       this.$refs.scroll.scrollTo(0, 0);
     },
     loadMoreGoods() {
-      this.isLoading = true;
-      if (this.isLoading) {
+      this.isGoodsLoading = true;
+      if (this.isGoodsLoading) {
         new Promise((resolve) => {
           this.getGoods(this.curGoodsType);
           resolve();
         }).then(() => {
           this.$refs.scroll.finishPullUp();
-          this.isLoading = false;
+          this.isGoodsLoading = false;
         });
       }
     },
@@ -154,24 +176,17 @@ export default {
   position: relative;
   height: 100vh;
 }
-.home-nav-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9;
-}
-.tab-control {
-  position: sticky;
-  top: 44px;
-  z-index: 9;
-}
 .scroll-wrapper {
   position: absolute;
   top: 44px;
   bottom: 49px;
   left: 0;
   right: 0;
+  overflow: hidden;
+}
+.tab-control {
+  position: relative;
+  z-index: 9;
 }
 .pullup-tips {
   padding: 1rem;

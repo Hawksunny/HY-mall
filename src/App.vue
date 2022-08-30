@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
     <my-tab-bar id="my-tab-bar" />
   </div>
 </template>
@@ -21,6 +23,8 @@ export default {
 #app {
   font-size: var(--font-size);
   line-height: var(--line-height);
+  width: 100vw;
+  height: 100vh;
 }
 #my-tab-bar {
   position: fixed;

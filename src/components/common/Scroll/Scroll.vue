@@ -9,8 +9,10 @@
 <script>
 import BScroll from "@better-scroll/core";
 import Pullup from "@better-scroll/pull-up";
+import MouseWheel from "@better-scroll/mouse-wheel";
 
 BScroll.use(Pullup);
+BScroll.use(MouseWheel);
 
 export default {
   name: "ScrollCmp",
@@ -34,6 +36,11 @@ export default {
     refreshDelay: {
       type: Number,
       default: 20, // 20ms == 1 tick
+    },
+    // 是否开启鼠标滚轮
+    mouseWheel: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -60,6 +67,7 @@ export default {
         probeType: this.probeType,
         click: this.click,
         pullUpLoad: this.pullUpLoad,
+        mouseWheel: this.mouseWheel,
       });
       if (this.probeType !== 0) {
         this.scroll.on("scroll", (pos) => {
@@ -84,6 +92,9 @@ export default {
     },
     scrollTo(x, y, time = 300) {
       this.scroll && this.scroll.scrollTo(x, y, time);
+    },
+    getScrollY() {
+      return this.scroll && this.scroll.y;
     },
   },
 };

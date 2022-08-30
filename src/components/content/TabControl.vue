@@ -29,10 +29,18 @@ export default {
       curIndex: 0,
     };
   },
+  mounted() {
+    // 同步主页中的两个 tabControl 的行为
+    this.$bus.$on("tabControlSync", (index) => {
+      this.curIndex = index;
+    });
+  },
   methods: {
     click(index) {
       this.curIndex = index;
       this.$emit("tabControlClick", index);
+      // 同步主页中的两个 tabControl 的行为
+      this.$bus.$emit("tabControlSync", index);
     },
   },
 };
