@@ -96,14 +96,14 @@ export default {
   },
   mounted() {
     // 1. 每次图片加载完成都让scroll重新计算可滚动内容高度，以确保不出bug
-    const refresh = debounce(this.$refs.scroll.refresh, 20);
-    this.$bus.$on("imageloaded", () => {
+    const refresh = debounce(this.$refs.scroll.refresh, 200); // 防抖处理
+    this.$bus.$on("goodImgLoaded", () => {
       refresh();
     });
     // 2. 获取DOM渲染完后tabControl对应DOM的offSetTop属性
-    setTimeout(() => {
+    this.$bus.$on("swiperImgLoaded", () => {
       this.tabControlOffsetTop = this.$refs["tab-control"].$el.offsetTop;
-    }, 200);
+    });
   },
   activated() {
     // console.log(this.scrollY);

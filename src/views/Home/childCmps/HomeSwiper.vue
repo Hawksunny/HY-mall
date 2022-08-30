@@ -1,9 +1,13 @@
 <template>
   <div class="home-swiper">
     <swiper>
-      <swiper-item v-for="item in banners" :key="item.acm">
+      <swiper-item v-for="(item, id) in banners" :key="id">
         <a :href="item.link">
-          <img :src="item.image" :alt="`${item.title}图片`" />
+          <img
+            :src="item.image"
+            :alt="`${item.title}图片`"
+            @load="swiperImgLoaded"
+          />
         </a>
       </swiper-item>
     </swiper>
@@ -25,6 +29,20 @@ export default {
       default() {
         return [];
       },
+    },
+  },
+  data() {
+    return {
+      isImgLoaded: false,
+    };
+  },
+  methods: {
+    swiperImgLoaded() {
+      if (!this.isImgLoaded) {
+        this.$bus.$emit("swiperImgLoaded");
+      } else {
+        this.isImgLoaded = true;
+      }
     },
   },
 };
